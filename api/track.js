@@ -8,7 +8,16 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
-    const { event, url, timestamp } = req.body;
+    const {
+      event,
+      url,
+      timestamp,
+      session_id,
+      page_type,
+      product_id,
+      variant_id,
+      metadata
+    } = req.body;
 
     const supabaseResponse = await fetch('https://cvmkonpbmpubskobzbqc.supabase.co/rest/v1/events', {
       method: 'POST',
@@ -21,7 +30,12 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         event,
         url,
-        timestamp
+        timestamp,
+        session_id,
+        page_type,
+        product_id,
+        variant_id,
+        metadata
       })
     });
 
